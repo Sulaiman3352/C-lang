@@ -7,12 +7,12 @@ int main()
     int characterAge; 
 
     printf("print your Name:"); 
-    scanf("%s", characterName); 
+    fgets(characterName,100, stdin); 
 
     printf("\nprint your age:");
     scanf("%d", &characterAge);
 
-    printf("\nThere once was a man named %s\n", characterName);
+    printf("\nThere once was a man named %s", characterName);
     printf("he was %d years old.\n",characterAge);   
 
     fprintf(stdout,"\n");
