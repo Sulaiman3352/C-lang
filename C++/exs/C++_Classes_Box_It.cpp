@@ -7,29 +7,55 @@ using namespace std;
 // The class should have the following functions : 
 
 // Constructors: 
-class Box{
+#include <iostream>
+using namespace std;
+
+class Box {
 private:
     int length, breadth, height;
-    
+
 public:
-    Box(): length(0),breadth(0),height(0){};
+    // Default constructor
+    Box() : length(0), breadth(0), height(0) {}
+
+    // Parameterized constructor
     Box(int length, int breadth, int height)
-      : length(length), breadth(breadth), height(height) {}
+        : length(length), breadth(breadth), height(height) {}
 
-Box(const Box& B);
+    // Copy constructor
+    Box(const Box& B) : length(B.length), breadth(B.breadth), height(B.height) {}
 
+    // Accessors
+    int getLength() const { return length; }
+    int getBreadth() const { return breadth; }
+    int getHeight() const { return height; }
 
-int getLength() const {return length;} // Return box's length
-int getBreadth () const{return breadth;} // Return box's breadth
-int getHeight () const{return height;}  //Return box's height
-long long CalculateVolume() const{return length * breadth * breadth;} // Return the volume of the box
+    // Volume calculation
+    long long CalculateVolume() const { return (long long)length * breadth * height; }
 
-//Overload operator < as specified
-//bool operator<(Box& b)
+    // Overload < operator
+    bool operator<(const Box& B) const {
+        if (length < B.length) {
+            return true;
+        } else if (length == B.length) {
+            if (breadth < B.breadth) {
+                return true;
+            } else if (breadth == B.breadth) {
+                if (height < B.height) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
-//Overload operator << as specified
-//ostream& operator<<(ostream& out, Box& B)
+    // Overload << operator
+    friend ostream& operator<<(ostream& out, const Box& B) {
+        out << B.length << " " << B.breadth << " " << B.height;
+        return out;
+    }
 };
+
 
 void check2()
 {
